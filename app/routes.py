@@ -38,15 +38,9 @@ def teams_west():
     return render_template('base_conferences_team.html', title='West Conference', teams=teams)
 
 ### Page statitiques d'une équipe ###
-
 @app.route('/team_statistics/<team_id>')
 def team_statistics(team_id) :
     teams_statistics = get_team_statistics(team_id)
-    return render_template('base_team_statistics.html', title='Team Statistics', teams_statistics=teams_statistics)
+    league_statistics = get_league_statistics()
+    return render_template('base_team_statistics.html', title='Team Statistics', teams_statistics=teams_statistics, league_statistics=league_statistics)
 
-@app.route('/players')
-def show_players():
-    players = get_players()
-    app.logger.debug(players)
-
-    return render_template('players.html', title='Liste des joueurs', players=players)

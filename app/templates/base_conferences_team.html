@@ -129,7 +129,7 @@
 
         {% for team in teams %}
 
-        <tr bgcolor="#9388B0" > <td bgcolor="#fff" align="center"> <a href="/team_statistics/{{ team[0] }}">  <img src="https://cdn.nba.com/logos/nba/{{team.id}}/global/L/logo.svg" height=50px width=50px> </a> </td> <td align="center">{{team.city}}</td> <td align="center">{{team.name}}</td> <td align="center">{{team.trigram}}</td> <td align="center">{{team.division}}</td></tr>
+        <tr bgcolor="#9388B0" > <td bgcolor="#fff" align="center"> <a href="/team_statistics/{{ team.id }}">  <img src="https://cdn.nba.com/logos/nba/{{team.id}}/global/L/logo.svg" height=50px width=50px> </a> </td> <td align="center">{{team.city}}</td> <td align="center">{{team.name}}</td> <td align="center">{{team.trigram}}</td> <td align="center">{{team.division}}</td></tr>
 
         {% endfor %}
 

@@ -31,3 +31,8 @@ def get_teams(conference):
 def get_team_statistics(team_id):
     sql = "SELECT * FROM dbo.teams_stats WHERE id = " + team_id
     return execute_sql(sql)
+
+
+def get_league_statistics():
+    sql = "SELECT * FROM dbo.league_stats"
+    return execute_sql(sql)

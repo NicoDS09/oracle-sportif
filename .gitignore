@@ -1,0 +1,7 @@
+.idea
+.DS_STORE
+app/.DS_Store
+
+venv
+app/__pycache__/*
+__pycache__/*

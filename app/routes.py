@@ -49,15 +49,12 @@ def teams():
     return render_template('base_two_choice_pages.html', title='Conferences', menu_1="EAST", redirect_1="/teams_east", menu_2="WEST", redirect_2="/teams_west")
 
 ### Page équipes conférence est ###
-
 @app.route('/teams_east')
 def teams_east():
     teams = get_teams("East")
-
     return render_template('base_conferences_team.html', title='East Conference', teams=teams)
 
 ### Page équipes conférence ouest ###
-
 @app.route('/teams_west')
 def teams_west():
     teams = get_teams("West")

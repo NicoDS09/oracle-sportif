@@ -103,11 +103,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            PLAYERS
-                        </a>
-                    </li>
-                    <li>
                         <a href="/predictions">
                             PREDICTIONS
                         </a>
@@ -116,33 +111,104 @@
             </nav>
         </header>
 
-         <container>
+          <container>
              <img src="https://cdn.nba.com/logos/nba/{{teams_statistics.0.id}}/global/L/logo.svg" height=300px width=300px>
              <h1> {{teams_statistics.0.id}} </h1>
              <h2> {{teams_statistics.0.season}}</h2>
 
-             <div class = 'info'>
-                min ==> {{teams_statistics.0.min}} <br>
-                fgp ==> {{teams_statistics.0.fgp}} <br>
-                tpp ==> {{teams_statistics.0.tpp}} <br>
-                ftp ==> {{teams_statistics.0.ftp}} <br>
-                orpg ==> {{teams_statistics.0.orpg}} <br>
-                drpg ==> {{teams_statistics.0.drpg}} <br>
-                trpg ==> {{teams_statistics.0.trpg}} <br>
-                tpg ==> {{teams_statistics.0.tpg}} <br>
-                spg ==> {{teams_statistics.0.spg}} <br>
-                bpg ==> {{teams_statistics.0.bpg}} <br>
-                pfpg ==> {{teams_statistics.0.pfpg}} <br>
-                oppg ==> {{teams_statistics.0.oppg}} <br>
-                eff ==> {{teams_statistics.0.eff}} <br>
-                fga ==> {{teams_statistics.0.fga}} <br>
-                fgm ==> {{teams_statistics.0.fgm}} <br>
-                tpm ==> {{teams_statistics.0.tpm}} <br>
-                tpa ==> {{teams_statistics.0.tpa}} <br>
-                ftm ==> {{teams_statistics.0.ftm}} <br>
-                fta ==> {{teams_statistics.0.fta}}
+             <div>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+                <canvas id="bar-chart" width="800" height="450"></canvas>
+                <script>
+                new Chart(document.getElementById("bar-chart"), {
+                    type: 'bar',
+                    data: {
+                      labels: ["Team", "League"],
+                      datasets: [
+                        {
+                          label: "Points per game",
+                          backgroundColor: ["#3e95cd", "#8e5ea2"],
+                          data: [{{teams_statistics.0.oppg}},{{league_statistics.0.oppg}}]
+                        }
+                      ]
+                    },
+                    options: {
+                      legend: { display: false },
+                      title: {
+                        display: true,
+                        text: 'Points par match sur la saison 2019'
+                      }
+                    }
+                });
+                </script>
              </div>
-
+             <div>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+                <canvas id="radar-chart" width="200" height="150"></canvas>
+                <script>
+                new Chart(document.getElementById("radar-chart"), {
+                    type: 'radar',
+                    data: {
+                      labels: ["Offensive rebounds", "Defensive rebounds", "Steals", "Blocks", "Personal fouls"],
+                      datasets: [
+                        {
+                          label: "Team",
+                          fill: true,
+                          backgroundColor: "rgba(179,181,198,0.2)",
+                          borderColor: "rgba(179,181,198,1)",
+                          pointBorderColor: "#fff",
+                          pointBackgroundColor: "rgba(179,181,198,1)",
+                          data: [{{teams_statistics.0.orpg}},{{teams_statistics.0.drpg}},{{teams_statistics.0.spg}},{{teams_statistics.0.bpg}},{{teams_statistics.0.pfpg}}]
+                        }, {
+                          label: "League",
+                          fill: true,
+                          backgroundColor: "rgba(255,99,132,0.2)",
+                          borderColor: "rgba(255,99,132,1)",
+                          pointBorderColor: "#fff",
+                          pointBackgroundColor: "rgba(255,99,132,1)",
+                          pointBorderColor: "#fff",
+                          data: [{{league_statistics.0.orpg}},{{league_statistics.0.drpg}},{{league_statistics.0.spg}},{{league_statistics.0.bpg}},{{league_statistics.0.pfpg}}]
+                        }
+                      ]
+                    },
+                    options: {
+                      title: {
+                        display: true,
+                        text: 'Team statistics per game over the 2019 season'
+                      }
+                    }
+                });
+                </script>
+             </div>
+             <div>
+                 <canvas id="bar-chart-grouped" width="800" height="450"></canvas>
+                 <script>
+                new Chart(document.getElementById("bar-chart-grouped"), {
+                    type: 'bar',
+                    data: {
+                      labels: ['Pourcentage de réussite au shoot','Pourcentage de réussite lancer-franc','Pourcentage de réussite à 3 pts'],
+                      datasets: [
+                        {
+                          label: "Team",
+                          backgroundColor: "#3e95cd",
+                          data: [{{teams_statistics.0.fgp}},{{teams_statistics.0.ftp}},{{teams_statistics.0.tpp}}]
+                        }, {
+                          label: "League",
+                          backgroundColor: "#8e5ea2",
+                          data: [{{league_statistics.0.fgp}},{{league_statistics.0.ftp}},{{league_statistics.0.tpp}}]
+                        }
+                      ]
+                    },
+                    options: {
+                      title: {
+                        display: true,
+                        text: 'Statistiques de tir'
+                      }
+                    }
+                });
+                </script>
+             </div>
          </container>
+
     </body>
 </html>

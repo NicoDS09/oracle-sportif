@@ -16,9 +16,10 @@
                 height: 75px;
                 top: 0;
                 left: 0px;
-                z-index: 3;
+                z-index: 1;
 
-                background-color : #5C2D91;
+                background-color : #fff;
+                filter: drop-shadow(15px 0px 0.5rem rgb(0, 0, 0));
             }
 
             .nav_bar {
@@ -28,33 +29,43 @@
 
                 display: flex;
                 position: fixed;
-                top: 10px;
+                top: 0;
                 right: 0;
             }
 
             .nav_bar li {
                 display: inline-block;
-                padding: 0px 30px;
+                padding-top: 15px;
+                margin: 0px 30px;
+                width: 150px;
+                height: 30px;
+                text-align: center;
+
             }
 
             .nav_bar li a {
+                font-size: 18px;
+                color: #000;
+                border-radius: 100px;
                 font-family: sans-serif;
-                font-weight: bold;
-                color : white;
                 text-decoration : none;
-            }
-
-            .nav_bar li a:hover{
-                text-decoration : underline;
+                font-weight: bold;
+            }.nav_bar li a:hover {
+                color: #5C2D91;
+                transform:scale(1.2);
+                filter: drop-shadow(0px 0px 0.9rem #5C2D91);
             }
 
             body{
                 font-family: sans-serif;
-                background: #0F366B;
+                background-color: #0f366b;
+
             }
 
             table{
-                background-color : #fff;
+                background: rgba(255, 255, 255, 0.164);
+                backdrop-filter: blur(20px);
+
                 border-radius: 5px ;
                 border-collapse:separate;
                 border-spacing:5px 15px;
@@ -74,12 +85,11 @@
             h1 {
                 border-radius: 5px;
                 width : 500px;
-
-
-                color: #E11647;
-                background-color: white;
+                color: #fff;
+                background: #C70F2E;
                 text-align: center;
             }
+
             .img_left{
                 padding-right:15px!important;
             }
@@ -99,27 +109,27 @@
 
 <body>
     <header>
-        <nav>
-            <ul class="nav_bar">
+            <nav>
+                <ul class="nav_bar">
 
-                <li>
-                    <a href="/index">
-                        HOME
-                    </a>
-                </li>
-                <li>
-                    <a href="/conferences">
-                        CONFERENCES
-                    </a>
-                </li>
-                <li>
-                    <a href="/predictions">
-                        PREDICTIONS
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+                    <li>
+                        <a href="/index">
+                            HOME
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/conferences">
+                            TEAMS
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/predictions">
+                            PREDICTIONS
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
 
     <br><br><br><br>
 

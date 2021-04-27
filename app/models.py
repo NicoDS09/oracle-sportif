@@ -27,7 +27,6 @@ def execute_sql(sql):
 
 def get_teams(conference):
     sql = "SELECT * FROM dbo.teams WHERE conference = '" + conference + "'"
-    print(pd.DataFrame(execute_sql(sql)))
     return execute_sql(sql)
 
 
@@ -54,6 +53,10 @@ def get_team_name_by_id(team_id):
     res = execute_sql(sql)
     return res[0]['name']
 
+def get_players(team_id):
+
+    sql = "SELECT * FROM dbo.players_stats WHERE team_id = " + str(team_id) + " ORDER BY uper DESC"
+    return execute_sql(sql)
 
 def make_prediction(model, scaler, hTeam, vTeam, date_match):
     X_pred = pd.DataFrame([

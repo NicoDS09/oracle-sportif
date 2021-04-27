@@ -65,5 +65,7 @@ def teams_west():
 def team_statistics(team_id) :
     teams_statistics = get_team_statistics(team_id)
     league_statistics = get_league_statistics()
-    return render_template('base_team_statistics.html', title='Team Statistics', teams_statistics=teams_statistics, league_statistics=league_statistics)
+    team = get_team_name_by_id(team_id)
+    players = get_players(team_id)
+    return render_template('base_team_statistics.html', title='Team Statistics', team=team, teams_statistics=teams_statistics, league_statistics=league_statistics, players=players)
 

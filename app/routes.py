@@ -1,7 +1,11 @@
 from flask import render_template, request, redirect, url_for
 from app import app
 from app.models import *
+import os
+import joblib
 
+app.config['MODEL_PATH'] = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'model_logreg.joblib')
+app.config['SCALER_PATH'] = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'standard_scaler.joblib')
 
 ### Page d'accueil ###
 @app.route('/')
@@ -14,7 +18,26 @@ def hello_world():
 
 @app.route('/predictions')
 def predictions():
-    return render_template('predictions.html')
+
+    date_match = 20200814
+    date_match_str = "14/08/2020"
+
+    # Load du model de RL + du Scaler
+    """
+    model = joblib.load(open(app.config['MODEL_PATH'], 'rb'))
+    scaler = joblib.load(open(app.config['SCALER_PATH'], 'rb'))
+
+    matchs = get_matchs(date_match)
+    for match in matchs:
+        is_h_team_win_predicted, probas_prediction = make_prediction(model, scaler, match['h_team'], match['v_team'], date_match)
+
+        match['is_h_team_win_predicted'] = is_h_team_win_predicted
+        match['probas_prediction'] = probas_prediction
+    """
+
+    matchs = [0,1,2]
+
+    return render_template('predictions.html', matchs=matchs, date_match=date_match, date_match_str=date_match_str)
 
 ### Page choix conférences pour équipes ###
 

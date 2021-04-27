@@ -4,7 +4,7 @@
 
 - Framework Python : **Flask**
 - Base de données : **SQL Server (Azure)**
-- Déploiement : **Heroku**
+- Hébergement/Déploiement : **Azure**
 
 ### Running de l'application Web en local
 

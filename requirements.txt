@@ -2,3 +2,6 @@ Flask
 gunicorn
 numpy
 pymssql
+joblib
+sklearn
+pandas

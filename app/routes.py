@@ -20,10 +20,12 @@ def hello_world():
 def predictions():
 
     date_match = 20200814
+    # date_match = 20210427
+
     date_match_str = "14/08/2020"
+    # date_match_str = "27/04/2021"
 
     # Load du model de RL + du Scaler
-    """
     model = joblib.load(open(app.config['MODEL_PATH'], 'rb'))
     scaler = joblib.load(open(app.config['SCALER_PATH'], 'rb'))
 
@@ -32,11 +34,12 @@ def predictions():
         is_h_team_win_predicted, probas_prediction = make_prediction(model, scaler, match['h_team'], match['v_team'], date_match)
 
         match['is_h_team_win_predicted'] = is_h_team_win_predicted
-        match['probas_prediction'] = probas_prediction
-    """
+        match['probas_h_team_win'] = round(probas_prediction[1], 2)
+        match['probas_v_team_win'] = round(probas_prediction[0], 2)
+        match['h_team_name'] = get_team_name_by_id(match['h_team'])
+        match['v_team_name'] = get_team_name_by_id(match['v_team'])
 
-    matchs = [0,1,2]
-
+    print(len(matchs))
     return render_template('predictions.html', matchs=matchs, date_match=date_match, date_match_str=date_match_str)
 
 ### Page choix conférences pour équipes ###

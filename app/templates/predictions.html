@@ -87,6 +87,13 @@
                 padding-left:15px!important;
             }
 
+            .predict_win{
+                background-color: #79e0c0
+            }
+            .predict_loose{
+                background-color: #dee2e6
+            }
+
         </style>
 </head>
 
@@ -124,24 +131,34 @@
     <table cellspacing="2" align="center" cellpadding="15">
         <caption><h1>Matchs du {{date_match_str}}</h1></caption>
 
-        {% for match in matchs %}
+        {% if matchs|length > 0 %}
 
-        <tr>
-            <td bgcolor="#fff" align="center" style="padding-right:0">Cleveland Cavaliers</td>
-            <td bgcolor="#fff" align="center" class="img_left">
-                <a href="/team_statistics/{{ 1610612737 }}"><img src="https://cdn.nba.com/logos/nba/{{1610612737}}/global/L/logo.svg" height=50px width=50px></a>
-            </td>
+            {% for match in matchs %}
 
-            <td align="center" bgcolor="#79e0c0" style="padding:0 5px 0 5px">0.63</td>
-            <td align="center" bgcolor="dee2e6" style="padding:0 5px 0 5px">0.37</td>
+            <tr>
+                <td bgcolor="#fff" align="center" style="padding-right:0">{{ match.h_team_name }}</td>
+                <td bgcolor="#fff" align="left" class="img_left">
+                    <a href="/team_statistics/{{ match.h_team }}"><img src="https://cdn.nba.com/logos/nba/{{ match.h_team }}/global/L/logo.svg" height=50px width=50px></a>
+                </td>
 
-            <td bgcolor="#fff" align="center" class="img_right">
-                <a href="/team_statistics/{{ 1610612738 }}"><img src="https://cdn.nba.com/logos/nba/{{1610612738}}/global/L/logo.svg" height=50px width=50px></a>
-            </td>
-            <td bgcolor="#fff" align="center" style="padding-left:0">Boston Celtics</td>
-        </tr>
+                <td align="center" class="{{ 'predict_win' if match.is_h_team_win_predicted else 'predict_loose' }}" style="padding:0 5px 0 5px">{{ match.probas_h_team_win }}</td>
+                <td align="center" class="{{ 'predict_win' if not match.is_h_team_win_predicted else 'predict_loose' }}" style="padding:0 5px 0 5px">{{ match.probas_v_team_win }}</td>
 
-        {% endfor %}
+                <td bgcolor="#fff" align="right" class="img_right">
+                    <a href="/team_statistics/{{ match.v_team }}"><img src="https://cdn.nba.com/logos/nba/{{ match.v_team }}/global/L/logo.svg" height=50px width=50px></a>
+                </td>
+                <td bgcolor="#fff" align="center" style="padding-left:0">{{ match.v_team_name }}</td>
+            </tr>
+
+            {% endfor %}
+
+        {% else %}
+
+            <tr>
+                <td bgcolor="#fff" align="center" style="padding-right:0">Aucun match trouvé à cette date</td>
+            </tr>
+
+        {% endif %}
 
     </table>
 </body>

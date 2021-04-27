@@ -49,9 +49,13 @@ def get_matchs(date_match=None):
     return execute_sql(sql)
 
 
-def make_prediction(model, scaler, hTeam, vTeam, date_match):
-    print(str(hTeam)+" VS "+str(vTeam)+" (date du match : "+str(date_match)+")")
+def get_team_name_by_id(team_id):
+    sql = "SELECT name FROM dbo.teams WHERE id = '" + str(team_id) + "'"
+    res = execute_sql(sql)
+    return res[0]['name']
 
+
+def make_prediction(model, scaler, hTeam, vTeam, date_match):
     X_pred = pd.DataFrame([
         generate_kpi_dataframe(
             team1=hTeam,
@@ -63,7 +67,7 @@ def make_prediction(model, scaler, hTeam, vTeam, date_match):
     X_pred = scaler.transform(X_pred)
 
     prediction = model.predict(X_pred)[0]
-    probas_prediction = model.predict_proba(X_pred)
+    probas_prediction = model.predict_proba(X_pred)[0]
 
     return prediction, probas_prediction
 

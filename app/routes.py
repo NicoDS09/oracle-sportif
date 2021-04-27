@@ -19,10 +19,10 @@ def hello_world():
 @app.route('/predictions')
 def predictions():
 
-    date_match = 20210425
+    date_match = 20210426
     # date_match = 20210427
 
-    date_match_str = "25/04/2021"
+    date_match_str = "26/04/2021"
     # date_match_str = "27/04/2021"
 
     # Load du model de RL + du Scaler
